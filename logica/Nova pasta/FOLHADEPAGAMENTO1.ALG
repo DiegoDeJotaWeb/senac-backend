@@ -106,13 +106,7 @@ fimse
 totalDesconto<- valeTransporte + valeRefeicao + inss
 escreval(novoSalario)
 
-escreval("Nome do funcionario: ", nomeFuncionario)
-
-escreval("Salario Bruto: ", salarioBruto)
-
-escreval("Total de descontos: ",totalDesconto)
-
-escreval("Total de descontos: ",totalDesconto)
+ //  escreval(inss)
  //  escreval("Nome do funcionario: ", nomeFuncionario)
   // escreval("O salario teve um aumento de R$", ganhoEmReal, " e assim passara a ser de R$",salarioBruto + ganhoEmReal, "com desconto de ", totalDesconto, "Salario Liquido de", totalDesconto - salarioBruto)
 
