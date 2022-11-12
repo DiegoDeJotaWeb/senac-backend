@@ -12,7 +12,6 @@ let qtdCompra = [];
 
 let total = document.getElementById("total");
 
-
 const mercadorias =[
     [100,"Arroz",21.90,"img/arroz.png"],
     [101,"Feijão",7.90,"img/feijao.jpg"],
@@ -45,56 +44,14 @@ formMercado.addEventListener('submit', function (event) {
     precoCompra.push(Number(formMercado.preco_produto.value));
     qtdCompra.push(Number(formMercado.qtd_produto.value));
 
+    gerarCupomFiscal();
+
     // console.log(produtosCompra);
 
-    let result = '';
-    let totalCompra =0
-   
-    for (let i = 0; i < produtosCompra.length; i++) {
-
-
-     
-
-        // console.log(produtosCompra[i]);
-
-        totalProduto = precoCompra[i] * qtdCompra[i];
-        totalCompra += totalProduto;
-        // console.log(totalCompra);
-
-        result += `<tr>
-        <td>${produtosCompra[i]} </td>         
-        <td> ${qtdCompra[i]}</td>
-        <td>R$ ${precoCompra[i].toFixed(2)} </td> 
-        <td>R$ ${totalProduto.toFixed(2)}</td>
-        <td><button class="btnExcluir">X</button></td>
-        </tr>
-        
-        
-        `;
-
-        total.innerHTML = "";
-        total.innerHTML = result;
-
-    }
-
-    result += `<tr style="background:#ccc">
-    <td colspan="3">Total</td>
-    <td>R$ ${totalCompra.toFixed(2)}</td>
-    </tr>`;
-    total.innerHTML = result;
-
-
-    var btnExcluir = document.querySelectorAll(".btnExcluir");
-
+    
 // console.log(btnExcluir);
 
-btnExcluir.forEach(e => {
-    e.addEventListener("click", (event) => {
-        event.preventDefault();
-        console.log(event.target)
-    })
-})
-
+/* 
 for (let i = 0; i < btnExcluir.length; i++) {
 
     console.log(i);
@@ -114,6 +71,54 @@ for (let i = 0; i < btnExcluir.length; i++) {
     // }
     
     })
-}
-  
+} */
 })
+
+function gerarCupomFiscal(){
+    let result = '';
+    let totalCompra =0
+   
+    for (let i = 0; i < produtosCompra.length; i++) {
+
+
+     
+
+        // console.log(produtosCompra[i]);
+
+        totalProduto = precoCompra[i] * qtdCompra[i];
+        
+        totalCompra += totalProduto;
+        // console.log(totalCompra);
+
+        result += `<tr>
+        <td>${produtosCompra[i]} </td>         
+        <td> ${qtdCompra[i]}</td>
+        <td>R$ ${precoCompra[i].toFixed(2)} </td> 
+        <td>R$ ${totalProduto.toFixed(2)}</td>
+        <td><button class="btnExcluir" onclick="excluir(${[i]})">X</button></td>
+        </tr>
+        
+        
+        `;
+
+        total.innerHTML = "";
+        total.innerHTML = result;
+
+    }
+
+    result += `<tr style="background:#ccc">
+    <td colspan="3">Total</td>
+    <td>R$ ${totalCompra.toFixed(2)}</td>
+    </tr>`;
+    total.innerHTML = result;
+
+}
+
+function excluir(posicao){
+    console.log(posicao);
+
+    produtosCompra.splice(posicao, 1) 
+    precoCompra.splice(posicao, 1) 
+    qtdCompra.splice(posicao, 1) 
+    gerarCupomFiscal();
+}
