@@ -1,6 +1,6 @@
 const { Component } = require("react");
 
-export default class GestaoProdutos extends Component {
+export default class GestaoEstoque extends Component {
     render() {
         return (
             <div>
@@ -8,14 +8,14 @@ export default class GestaoProdutos extends Component {
                 <div className="container">
                     <div className="box-gestao">
                         <div>
-                            <h2 className="title">Gestão de produtos</h2>
+                            <h2 className="title">Gestão de estoque</h2>
                             <table>
                                 <thead>
                                     <tr>
                                         <th>Código de barras</th>
                                         <th>Imagem</th>
                                         <th>Nome</th>
-                                        <th>Preço</th>
+                                        <th>Quantidade</th>
                                         <th>Ação</th>
                                     </tr>
 
@@ -25,7 +25,7 @@ export default class GestaoProdutos extends Component {
                                         <td>0001</td>
                                         <td>-</td>
                                         <td>Arroz</td>
-                                        <td>R$ 17,80</td>
+                                        <td>20</td>
                                         <td><a href="#">Editar</a> | <a href="#">Apagar</a></td>
                                     </tr>
 
