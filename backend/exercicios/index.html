@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<!-- Uma empresa quer verificar se um empregado está qualificado para a aposentadoria ou não. Para estar em condições, um dos
-seguintes requisitos deve ser satisfeito: - Ter no mínimo 65 anos de idade. - Ter trabalhado no mínimo 30 anos. - Ter no
-mínimo 60 anos e ter trabalhado no mínimo 25 anos. Com base nas informações acima, faça um algoritmo que leia: o número
-do empregado (código), o ano de seu nascimento e o ano de seu ingresso na empresa. O programa deverá escrever a idade e
-o tempo de trabalho do empregado e a mensagem 'Requerer aposentadoria' ou 'Não requerer'; -->
 
-<!-- screva um algoritmo que permita a leitura dos nomes de 10 pessoas e armazene os nomes lidos em um vetor. 
+
+<!-- escreva um algoritmo que permita a leitura dos nomes de 10 pessoas e armazene os nomes lidos em um vetor. 
     Após isto, o algoritmo deve permitir a leitura de mais 1 nome qualquer de pessoa e depois escrever a mensagem 
     ACHEI, se o nome estiver entre os 10 nomes lidos anteriormente (guardados no vetor), ou NÃO ACHEI caso contrário; -->
 
@@ -29,13 +25,14 @@ quantos alunos obtiveram nota acima desta média calculada. Escrever a média da
 
 <body>
 
-    <form id="form-aposentadoria">
-        <input type="text" name="codigo">
-        <input type="text" name="dtNascimento">
-        <input type="text" name="dtIngresso">
+    <form id="form-nomes" action="#">
+        <input type="text" name="nome">
+        <input type="text" name="busca">
 
 
-        <button id="btn-aposentadoria">Calcular</button>
+        <button id="btn-nomes-cadastro" type="submit">Cadastrar</button>
+
+        <button id="btn-nomes-busca" type="button">Buscar</button>
     </form>
 
     <p id="resul"></p>
@@ -43,34 +40,49 @@ quantos alunos obtiveram nota acima desta média calculada. Escrever a média da
 
     <script>
 
-        var form = document.getElementById('form-aposentadoria');
-        var btnAposentadoria = document.getElementById('btn-aposentadoria');
+        var form = document.getElementById('form-nomes');
+        var btnNomeCadastro = document.getElementById('btn-nomes-cadastro');
+
+        var btnNomeBusca = document.getElementById('btn-nomes-busca');
+
+
         var resul = document.getElementById('resul');
 
-        btnAposentadoria.addEventListener('click', function (event) {
+        var pessoas = [];
+
+
+
+        btnNomeCadastro.addEventListener('click', function (event) {
             event.preventDefault();
 
-            var codigo = form.codigo.value;
-            var dtNascimento = Number(form.dtNascimento.value);
-            var dtIngresso = Number(form.dtIngresso.value);
+            pessoas.push(form.nome.value);
+            console.log(pessoas)
 
-            var dataAtual = new Date();
-            var anoAtual = dataAtual.getFullYear();
-            console.log(anoAtual);
+        });
 
-            var idade = Number(anoAtual) - dtNascimento;
-            var qtdIngresso = Number(anoAtual) - dtIngresso;
+        btnNomeBusca.addEventListener('click', function (event) {
+            event.preventDefault();
 
-            console.log(idade);
-            if (idade >= 65 || qtdIngresso >= 30) {
-                // console.log("Requerer aposentadoria");
+            let buscaPessoa = form.busca.value;
 
-                resul.innerHTML = `Codigo do funcionario: ${codigo} <br>Idade: ${idade} <br> Tempo de trabalho: ${qtdIngresso} <br> Requerer aposentadoria`;
-            } else {
-                // console.log("Não requerer");
-                resul.innerHTML = `Codigo do funcionario: ${codigo} <br> Idade: ${idade} <br> Tempo de trabalho: ${qtdIngresso} <br> Não requerer`;
+            for (let i = 0; i < pessoas.length; i++) {
+                console.log(pessoas[i]);
+                if (pessoas.indexOf(pessoas[i]) > 0) {
+                    // console.log("achou");
+                    buscaPessoa = "";
+                    console.log(pessoas.indexOf(pessoas[i]));
+                    resul.innerHTML = "Achou";
+                
+                }
+                 else if(buscaPessoa == ""){
+                    resul.innerHTML = "não achou";
+                } else {
+                    // console.log("não achou");
+                    buscaPessoa = "";
+                    resul.innerHTML = "não achou";
+                }
+
             }
-
         });
     </script>
 
